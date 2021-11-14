@@ -1,0 +1,100 @@
+openapi: 3.0.0
+servers:
+
+  - description: Shipment Sample App
+    url: http://localhost:5000/
+info:
+  description: This is a simple API
+  version: "1.0.0"
+  title: Simple shipment API
+  contact:
+    email: you@your-company.com
+  license:
+    name: Apache 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+paths:
+  /shipment/list:
+    get:
+      tags:
+        - shipment
+      summary: searches shipment
+      operationId: view.get
+      description: |
+        By passing in the appropriate options, you can search for
+        available shipment in the system
+
+      responses:
+        '200':
+          description: search results matching criteria
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/shipmentItem'
+        '400':
+          description: bad input parameter
+          
+  /shipment/create:
+    post:
+      tags:
+        - shipment
+      summary: adds a shipment item
+      operationId: view.post
+      description: Adds an item to the system
+      responses:
+        '201':
+          description: item created
+        '400':
+          description: 'invalid input, object invalid'
+        '409':
+          description: an existing item already exists
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/shipmentItem'
+        description: shipment item to add
+        
+  /shipment/update/{id}:
+    put:
+      operationId: view.put
+      tags:
+        - shipment
+      summary: Update a Shipment in the people list
+      description: Update a Shipment in the Shipments list
+      parameters:
+        - name: id
+          in: path
+          description: Shipment ID
+          required: true
+          schema:
+            type: integer
+            format: int64
+            
+      responses:
+        200:
+          description: Successfully updated a shipment in Shipments list
+
+components:
+  schemas:
+    shipmentItem:
+      type: object
+
+      properties:
+        item:
+          type: string
+        description:
+          type: string
+        status:
+          type: string
+        tracking_number:
+          type: string
+        current_location: 
+          type: string
+        source:
+          type: string
+        destination":
+          type: string
+        arrival:
+          type: string
