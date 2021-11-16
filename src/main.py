@@ -7,4 +7,4 @@ port= os.getenv('PORT')
 
 if __name__ == '__main__':
     db.init_app(app)
-    app.run(debug=True, port={port})
+    app.run(debug=True, port=port)
