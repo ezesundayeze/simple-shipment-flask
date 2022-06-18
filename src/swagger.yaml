@@ -13,7 +13,7 @@ info:
     name: Apache 2.0
     url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
 paths:
-  /shipment/list:
+  /api/shipment/list:
     get:
       tags:
         - shipment
@@ -35,7 +35,7 @@ paths:
         '400':
           description: bad input parameter
           
-  /shipment/create:
+  /api/shipment/create:
     post:
       tags:
         - shipment
@@ -56,7 +56,7 @@ paths:
               $ref: '#/components/schemas/shipmentItem'
         description: shipment item to add
         
-  /shipment/update/{id}:
+  /api/shipment/update/{id}:
     put:
       operationId: view.put
       tags:
